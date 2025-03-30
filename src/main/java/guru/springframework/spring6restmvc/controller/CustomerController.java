@@ -11,15 +11,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
-
+/**
+ * Created by jt, Spring Framework Guru.
+ */
 @RequestMapping("/api/v1/customer")
 @RequiredArgsConstructor
 @RestController
 public class CustomerController {
+
     private final CustomerService customerService;
 
     @PostMapping
-    public ResponseEntity handlePost(@RequestBody Customer customer) {
+    public ResponseEntity handlePost(@RequestBody Customer customer){
         Customer savedCustomer = customerService.saveNewCustomer(customer);
 
         HttpHeaders headers = new HttpHeaders();
@@ -29,12 +32,12 @@ public class CustomerController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<Customer> listAllCustomers() {
+    public List<Customer> listAllCustomers(){
         return customerService.getAllCustomers();
     }
 
     @RequestMapping(value = "{customerId}", method = RequestMethod.GET)
-    public Customer getCustomerById(@PathVariable("customerId") UUID id) {
+    public Customer getCustomerById(@PathVariable("customerId") UUID id){
         return customerService.getCustomerById(id);
     }
 
